@@ -1,7 +1,7 @@
 import { API_OPTIONS } from '../utils/constants'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { addTrailerVideo } from '../utils/moviesSlice'
+import { addTrailerVideo } from '../utils/moviesSlice'  
 
 const VideoBackground = ({ movieId }) => {
     const trailerVideo = useSelector((store) => store.movies?.trailerVideo)
@@ -26,15 +26,16 @@ const VideoBackground = ({ movieId }) => {
     useEffect(() => {
         getMovieVideos()
     }, [])
-    
+
     return (
-        <div className="w-screen">
+        <div className="w-screen pointer-events-none">
             <iframe
                 className="w-screen aspect-video"
                 src={
                     'https://www.youtube.com/embed/' +
                     trailerVideo?.key +
-                    '?&autoplay=1&mute=1'
+                    '?&autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=' +
+                    trailerVideo?.key
                 }
                 title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

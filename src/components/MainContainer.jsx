@@ -2,6 +2,7 @@ import VideoBackground from './VideoBackground'
 import VideoTitle from './VideoTitle'
 import { useSelector } from 'react-redux'
 
+
 const MainContainer = () => {
     const movies = useSelector((store) => store.movies.nowPlayingMovies)
 
@@ -11,9 +12,11 @@ const MainContainer = () => {
     const { original_title, overview, id } = mainMovie
 
     return (
-        <div>
-            <VideoTitle title={original_title} overview={overview} />
+        <div className="relative w-full h-screen">
             <VideoBackground movieId={id} />
+            <div className="relative z-10 h-full flex items-center px-4 md:px-12">
+                <VideoTitle title={original_title} overview={overview} />
+            </div>
         </div>
     )
 }

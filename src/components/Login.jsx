@@ -8,7 +8,7 @@ import {
 } from 'firebase/auth'
 import { auth } from '../utils/firebase'
 import { useNavigate } from 'react-router-dom'
-import { login_wallpaper } from '../utils/constants'
+import { login_wallpaper, user_icon } from '../utils/constants'
 
 const Login = () => {
     const [isSignInForm, setIsSignInForm] = useState(true)
@@ -37,8 +37,7 @@ const Login = () => {
                     const user = userCredential.user
                     updateProfile(user, {
                         displayName: name.current.value,
-                        photoURL:
-                            'https://avatars.githubusercontent.com/u/12824231?v=4',
+                        photoURL: user_icon,
                     })
                         .then(() => {
                             const { uid, email, displayName, photoURL } =
