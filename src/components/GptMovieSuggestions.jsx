@@ -1,4 +1,3 @@
-// ========== GptMovieSuggestions.jsx ==========
 import { useSelector } from 'react-redux'
 import MovieList from './MovieList'
 
@@ -7,27 +6,39 @@ const GptMovieSuggestions = () => {
     const gptMovies = gpt?.gptResMovies
     const isLoading = gpt?.isLoading
 
-    console.log(gpt)
-
     // Loading Shimmer UI
     if (isLoading) {
         return (
-            <div className="max-w-7xl mx-auto space-y-8 pb-20 px-4">
-                {[1, 2, 3].map((row) => (
-                    <div key={row} className="space-y-4">
-                        {/* Shimmer Title */}
-                        <div className="h-8 w-64 bg-gradient-to-r from-gray-600 via-gray-400 to-gray-600 rounded animate-shimmer bg-[length:200%_100%]"></div>
-
-                        {/* Shimmer Cards */}
-                        <div className="flex gap-3 overflow-hidden">
+            <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+                {[1, 2].map((row) => (
+                    <div key={row} style={{ marginBottom: '32px' }}>
+                        <div
+                            style={{
+                                height: '28px',
+                                width: '200px',
+                                backgroundColor: '#333',
+                                borderRadius: '4px',
+                                marginBottom: '16px',
+                            }}
+                        />
+                        <div
+                            style={{
+                                display: 'flex',
+                                gap: '12px',
+                                overflow: 'hidden',
+                            }}
+                        >
                             {[1, 2, 3, 4, 5].map((card) => (
                                 <div
                                     key={card}
-                                    className="flex-shrink-0"
-                                    style={{ width: '256px', height: '143px' }}
-                                >
-                                    <div className="w-full h-full bg-gradient-to-r from-gray-600 via-gray-400 to-gray-600 rounded-md animate-shimmer bg-[length:200%_100%]"></div>
-                                </div>
+                                    style={{
+                                        width: '200px',
+                                        height: '300px',
+                                        backgroundColor: '#333',
+                                        borderRadius: '4px',
+                                        flexShrink: 0,
+                                    }}
+                                />
                             ))}
                         </div>
                     </div>
@@ -39,21 +50,50 @@ const GptMovieSuggestions = () => {
     // No results yet - show empty state
     if (!gptMovies) {
         return (
-            <div className="max-w-7xl mx-auto space-y-8 pb-20">
-                <div className="text-center py-20">
-                    <p className="text-gray-400 text-xl">
-                        Search for movies and get AI-powered recommendations!
-                    </p>
+            <div
+                style={{
+                    maxWidth: '600px',
+                    margin: '0 auto',
+                    textAlign: 'center',
+                    padding: '64px 16px',
+                }}
+            >
+                <div
+                    style={{
+                        width: '80px',
+                        height: '80px',
+                        margin: '0 auto 24px',
+                        borderRadius: '50%',
+                        backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}
+                >
+                    <span style={{ fontSize: '32px' }}>🎬</span>
                 </div>
+                <p
+                    style={{
+                        color: '#888',
+                        fontSize: '18px',
+                        marginBottom: '8px',
+                    }}
+                >
+                    Ready to discover something new?
+                </p>
+                <p style={{ color: '#666', fontSize: '14px' }}>
+                    Tell us what you're in the mood for and let AI find the
+                    perfect movies for you.
+                </p>
             </div>
         )
     }
 
     // Show results
     return (
-        <div className="max-w-7xl mx-auto pb-20">
+        <div style={{ width: '100%' }}>
             <MovieList
-                title="Recommended Movies"
+                title="AI Recommended Movies"
                 movies={gptMovies.flat().filter(Boolean)}
             />
         </div>

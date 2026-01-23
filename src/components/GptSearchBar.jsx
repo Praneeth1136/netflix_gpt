@@ -1,4 +1,3 @@
-// ========== GptSearchBar.jsx ==========
 import { useRef } from 'react'
 import { askGemini } from '../utils/gemini'
 import { API_OPTIONS } from '../utils/constants'
@@ -22,9 +21,8 @@ const GptSearchBar = () => {
 
     const handleSearch = async (e) => {
         e.preventDefault()
-        console.log('Searching for:', searchText.current.value)
+        if (!searchText.current.value.trim()) return
 
-        // Set loading to true
         dispatch(setLoading(true))
 
         const prompt = `
@@ -44,36 +42,115 @@ const GptSearchBar = () => {
         }
 
         const movieList = response.split(',').map((m) => m.trim())
-
         const promiseArray = movieList.map((movie) => searchMovieTmdb(movie))
-
         const tmdbResults = await Promise.all(promiseArray)
-        console.log(tmdbResults)
 
         dispatch(addGptMovies(tmdbResults))
     }
 
+    const suggestions = [
+        'Action thrillers',
+        'Romantic comedies',
+        'Mind-bending sci-fi',
+        'Based on true stories',
+        'Animated classics',
+    ]
+
     return (
-        <div className="max-w-4xl mx-auto mb-8">
-            <h1 className="mb-6 text-2xl font-extrabold text-center text-white sm:text-5xl">
-                Get Movie Suggestions from GPT
-            </h1>
-            <form onSubmit={handleSearch} className="relative">
-                <div className="flex gap-3">
-                    <input
-                        type="text"
-                        ref={searchText}
-                        placeholder="What would you like to watch today? (e.g., Action movies with cars)"
-                        className="flex-1 px-6 py-4 text-base md:text-lg bg-black/70 text-white placeholder-gray-400 border border-gray-600 rounded-lg focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-600/50 transition"
-                    />
-                    <button
-                        type="submit"
-                        className="px-8 py-4 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-colors duration-200 whitespace-nowrap"
-                    >
-                        Search
-                    </button>
-                </div>
+        <div
+            style={{
+                maxWidth: '800px',
+                margin: '0 auto',
+                marginBottom: '48px',
+            }}
+        >
+            {/* Title */}
+            <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+                <h1
+                    style={{
+                        fontSize: '48px',
+                        fontWeight: 'bold',
+                        color: 'white',
+                        marginBottom: '12px',
+                    }}
+                >
+                    Let AI Find Your Next Movie
+                </h1>
+                <p style={{ color: '#888', fontSize: '18px' }}>
+                    Describe what you're in the mood for and get personalized
+                    recommendations
+                </p>
+            </div>
+
+            {/* Search Form */}
+            <form
+                onSubmit={handleSearch}
+                style={{ display: 'flex', gap: '12px', marginBottom: '24px' }}
+            >
+                <input
+                    type="text"
+                    ref={searchText}
+                    placeholder="e.g., Scary movies with a twist ending..."
+                    style={{
+                        flex: 1,
+                        padding: '16px 20px',
+                        fontSize: '16px',
+                        backgroundColor: '#333',
+                        color: 'white',
+                        border: '1px solid #555',
+                        borderRadius: '8px',
+                        outline: 'none',
+                    }}
+                />
+                <button
+                    type="submit"
+                    style={{
+                        padding: '16px 32px',
+                        fontSize: '16px',
+                        fontWeight: '600',
+                        color: 'white',
+                        background:
+                            'linear-gradient(to right, #9333ea, #dc2626)',
+                        border: 'none',
+                        borderRadius: '8px',
+                        cursor: 'pointer',
+                        whiteSpace: 'nowrap',
+                    }}
+                >
+                    ⚡ Search with AI
+                </button>
             </form>
+
+            {/* Suggestion Tags */}
+            <div
+                style={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    gap: '8px',
+                    justifyContent: 'center',
+                }}
+            >
+                {suggestions.map((tag) => (
+                    <button
+                        key={tag}
+                        type="button"
+                        onClick={() => {
+                            searchText.current.value = tag
+                        }}
+                        style={{
+                            padding: '8px 16px',
+                            fontSize: '14px',
+                            color: '#ccc',
+                            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                            border: 'none',
+                            borderRadius: '20px',
+                            cursor: 'pointer',
+                        }}
+                    >
+                        {tag}
+                    </button>
+                ))}
+            </div>
         </div>
     )
 }

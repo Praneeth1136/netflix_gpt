@@ -7,14 +7,20 @@ import useTopRatedMovies from '../Hooks/useTopRatedMovies'
 import useUpcomingMovies from '../Hooks/useUpcomingMovies'
 
 const Browse = () => {
-    useNowPlayingMovies();
-    usePopularMovies();
-    useTopRatedMovies();
-    useUpcomingMovies();
+    useNowPlayingMovies()
+    usePopularMovies()
+    useTopRatedMovies()
+    useUpcomingMovies()
+
     return (
-        <div>
+        <div className="bg-[#141414]">
+            {/* Fixed Header - Always on top */}
             <Header />
+
+            {/* Main Hero Section */}
             <MainContainer />
+
+            {/* Movie Rows - Overlaps hero slightly */}
             <SecondaryContainer />
         </div>
     )
