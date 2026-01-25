@@ -3,7 +3,7 @@ import GptSearchBar from './GptSearchBar'
 import GptMovieSuggestions from './GptMovieSuggestions'
 import { useDispatch } from 'react-redux'
 import { removeGptMovies } from '../utils/gptSlice'
-import { main_LOGO } from '../utils/constants'
+import { main_LOGO, login_wallpaper } from '../utils/constants'
 
 const GptSearch = () => {
     const dispatch = useDispatch()
@@ -16,11 +16,54 @@ const GptSearch = () => {
         <div
             style={{
                 minHeight: '100vh',
-                backgroundColor: '#141414',
+                position: 'relative',
                 display: 'flex',
                 flexDirection: 'column',
             }}
         >
+            {/* Background Image */}
+            <div
+                style={{
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    zIndex: 0,
+                }}
+            >
+                <img
+                    src={login_wallpaper}
+                    alt="background"
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                    }}
+                />
+                <div
+                    style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        background:
+                            'linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.7) 100%)',
+                    }}
+                />
+                <div
+                    style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        backgroundColor: 'rgba(0,0,0,0.3)',
+                    }}
+                />
+            </div>
+
             {/* Header */}
             <div
                 style={{
@@ -29,8 +72,7 @@ const GptSearch = () => {
                     left: 0,
                     right: 0,
                     zIndex: 50,
-                    backgroundColor: '#141414',
-                    borderBottom: '1px solid #333',
+                    backgroundColor: 'transparent',
                     padding: '16px 48px',
                     display: 'flex',
                     alignItems: 'center',
@@ -68,10 +110,12 @@ const GptSearch = () => {
             {/* Main Content */}
             <div
                 style={{
-                    paddingTop: '100px',
+                    position: 'relative',
+                    zIndex: 10,
+                    paddingTop: '70px',
                     paddingLeft: '48px',
                     paddingRight: '48px',
-                    paddingBottom: '48px',
+                    paddingBottom: '24px',
                     flex: 1,
                 }}
             >

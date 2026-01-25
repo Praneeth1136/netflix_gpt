@@ -27,7 +27,7 @@ const GptSearchBar = () => {
 
         const prompt = `
       Act as a movie expert.
-      Suggest 5 movies based on: ${searchText.current.value}.
+      Suggest 8 movies based on: ${searchText.current.value}.
       Return only a comma-separated list.
     `
 
@@ -49,107 +49,118 @@ const GptSearchBar = () => {
     }
 
     const suggestions = [
-        'Action thrillers',
-        'Romantic comedies',
-        'Mind-bending sci-fi',
-        'Based on true stories',
-        'Animated classics',
+        'Something fun to watch tonight',
+        'Oscar winning dramas',
+        'Feel-good movies',
+        '90s classics',
+        'Movies like Interstellar',
     ]
 
     return (
         <div
             style={{
-                maxWidth: '800px',
+                maxWidth: '700px',
                 margin: '0 auto',
-                marginBottom: '48px',
+                marginBottom: '24px',
+                marginTop: '20px',
             }}
         >
             {/* Title */}
-            <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+            <div style={{ textAlign: 'center', marginBottom: '24px' }}>
                 <h1
                     style={{
-                        fontSize: '48px',
-                        fontWeight: 'bold',
+                        fontSize: '36px',
+                        fontWeight: '500',
                         color: 'white',
-                        marginBottom: '12px',
+                        marginBottom: '8px',
+                        letterSpacing: '-0.5px',
                     }}
                 >
-                    Let AI Find Your Next Movie
+                    What are you in the mood for?
                 </h1>
-                <p style={{ color: '#888', fontSize: '18px' }}>
-                    Describe what you're in the mood for and get personalized
-                    recommendations
+                <p style={{ color: '#8c8c8c', fontSize: '16px' }}>
+                    Describe a movie and we'll find it for you
                 </p>
             </div>
 
             {/* Search Form */}
             <form
                 onSubmit={handleSearch}
-                style={{ display: 'flex', gap: '12px', marginBottom: '24px' }}
+                style={{ display: 'flex', gap: '0', marginBottom: '16px' }}
             >
                 <input
                     type="text"
                     ref={searchText}
-                    placeholder="e.g., Scary movies with a twist ending..."
+                    placeholder="e.g., A thriller with an unexpected twist"
                     style={{
                         flex: 1,
-                        padding: '16px 20px',
+                        padding: '18px 20px',
                         fontSize: '16px',
-                        backgroundColor: '#333',
+                        backgroundColor: '#2b2b2b',
                         color: 'white',
-                        border: '1px solid #555',
-                        borderRadius: '8px',
+                        border: 'none',
+                        borderRadius: '4px 0 0 4px',
                         outline: 'none',
                     }}
                 />
                 <button
                     type="submit"
                     style={{
-                        padding: '16px 32px',
+                        padding: '18px 32px',
                         fontSize: '16px',
                         fontWeight: '600',
                         color: 'white',
-                        background:
-                            'linear-gradient(to right, #9333ea, #dc2626)',
+                        backgroundColor: '#E50914',
                         border: 'none',
-                        borderRadius: '8px',
+                        borderRadius: '0 4px 4px 0',
                         cursor: 'pointer',
                         whiteSpace: 'nowrap',
                     }}
                 >
-                    ⚡ Search with AI
+                    Search
                 </button>
             </form>
 
             {/* Suggestion Tags */}
-            <div
-                style={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    gap: '8px',
-                    justifyContent: 'center',
-                }}
-            >
-                {suggestions.map((tag) => (
-                    <button
-                        key={tag}
-                        type="button"
-                        onClick={() => {
-                            searchText.current.value = tag
-                        }}
-                        style={{
-                            padding: '8px 16px',
-                            fontSize: '14px',
-                            color: '#ccc',
-                            backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                            border: 'none',
-                            borderRadius: '20px',
-                            cursor: 'pointer',
-                        }}
-                    >
-                        {tag}
-                    </button>
-                ))}
+            <div style={{ textAlign: 'center' }}>
+                <p
+                    style={{
+                        color: '#666',
+                        fontSize: '13px',
+                        marginBottom: '12px',
+                    }}
+                >
+                    Try searching for:
+                </p>
+                <div
+                    style={{
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        gap: '8px',
+                        justifyContent: 'center',
+                    }}
+                >
+                    {suggestions.map((tag) => (
+                        <button
+                            key={tag}
+                            type="button"
+                            onClick={() => {
+                                searchText.current.value = tag
+                            }}
+                            style={{
+                                padding: '8px 16px',
+                                fontSize: '13px',
+                                color: '#aaa',
+                                backgroundColor: 'transparent',
+                                border: '1px solid #444',
+                                borderRadius: '4px',
+                                cursor: 'pointer',
+                            }}
+                        >
+                            {tag}
+                        </button>
+                    ))}
+                </div>
             </div>
         </div>
     )

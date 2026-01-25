@@ -74,107 +74,150 @@ const Login = () => {
     }
 
     return (
-        <div className="min-h-screen relative">
+        <div className="min-h-screen relative overflow-hidden">
             <Header />
 
-            {/* Background Image with Overlay */}
+            {/* Background Image with Gradient Overlay */}
             <div className="absolute inset-0">
                 <img
                     src={login_wallpaper}
                     alt="netflix background"
                     className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-black/60"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/80"></div>
+                <div className="absolute inset-0 bg-black/30"></div>
             </div>
 
-            {/* Login Form */}
-            <div className="relative z-10 flex justify-center items-center min-h-screen px-4 py-20">
+            {/* Login Form Container */}
+            <div className="relative z-10 flex justify-center items-center min-h-screen px-4 py-10">
                 <form
                     onSubmit={(e) => e.preventDefault()}
-                    className="w-full max-w-md bg-black/75 rounded-md p-14 backdrop-blur-sm"
+                    style={{
+                        width: '100%',
+                        maxWidth: '450px',
+                        height: '580px',
+                        padding: '70px 80px',
+                        backgroundColor: 'rgba(0, 0, 0, 0.75)',
+                        borderRadius: '4px',
+                        opacity: '0.8',
+                    }}
                 >
-                    <h1 className="font-bold text-3xl text-white mb-7">
+                    {/* Sign In / Sign Up Title */}
+                    <h1
+                        style={{
+                            fontSize: '32px',
+                            fontWeight: 'bold',
+                            color: 'white',
+                            marginBottom: '28px',
+                        }}
+                    >
                         {isSignInForm ? 'Sign In' : 'Sign Up'}
                     </h1>
 
+                    {/* Name Input - Only for Sign Up */}
                     {!isSignInForm && (
-                        <div className="mb-4">
-                            <input
-                                ref={name}
-                                type="text"
-                                placeholder="Full Name"
-                                className="w-full px-5 py-4 bg-[#333] text-white rounded border border-[#333] focus:border-white/50 transition-colors placeholder-gray-400"
-                            />
-                        </div>
+                        <input
+                            ref={name}
+                            type="text"
+                            placeholder="Full Name"
+                            style={{
+                                width: '100%',
+                                padding: '16px 20px',
+                                marginBottom: '16px',
+                                backgroundColor: '#333',
+                                color: 'white',
+                                border: 'none',
+                                borderRadius: '4px',
+                                fontSize: '16px',
+                            }}
+                        />
                     )}
 
-                    <div className="mb-4">
-                        <input
-                            ref={email}
-                            type="text"
-                            placeholder="Email or mobile number"
-                            className="w-full px-5 py-4 bg-[#333] text-white rounded border border-[#333] focus:border-white/50 transition-colors placeholder-gray-400"
-                        />
-                    </div>
+                    {/* Email Input */}
+                    <input
+                        ref={email}
+                        type="text"
+                        placeholder="Email or mobile number"
+                        style={{
+                            width: '100%',
+                            padding: '16px 20px',
+                            marginBottom: '16px',
+                            backgroundColor: '#333',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '4px',
+                            fontSize: '16px',
+                        }}
+                    />
 
-                    <div className="mb-4">
-                        <input
-                            ref={password}
-                            type="password"
-                            placeholder="Password"
-                            className="w-full px-5 py-4 bg-[#333] text-white rounded border border-[#333] focus:border-white/50 transition-colors placeholder-gray-400"
-                        />
-                    </div>
+                    {/* Password Input */}
+                    <input
+                        ref={password}
+                        type="password"
+                        placeholder="Password"
+                        style={{
+                            width: '100%',
+                            padding: '16px 20px',
+                            marginBottom: '16px',
+                            backgroundColor: '#333',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '4px',
+                            fontSize: '16px',
+                        }}
+                    />
 
+                    {/* Error Message */}
                     {errorMessage && (
-                        <p className="text-[#E87C03] text-sm mb-4 bg-[#E87C03]/10 p-3 rounded">
+                        <p
+                            style={{
+                                color: '#E87C03',
+                                fontSize: '14px',
+                                marginBottom: '16px',
+                            }}
+                        >
                             {errorMessage}
                         </p>
                     )}
 
+                    {/* Sign In / Sign Up Button */}
                     <button
-                        className="w-full py-3 mt-4 bg-[#E50914] text-white font-semibold rounded hover:bg-[#F40612] transition-colors cursor-pointer"
                         onClick={handleButtonClick}
+                        style={{
+                            width: '100%',
+                            padding: '16px',
+                            marginTop: '24px',
+                            marginBottom: '12px',
+                            backgroundColor: '#E50914',
+                            color: 'white',
+                            fontSize: '16px',
+                            fontWeight: 'bold',
+                            border: 'none',
+                            borderRadius: '4px',
+                            cursor: 'pointer',
+                        }}
                     >
                         {isSignInForm ? 'Sign In' : 'Sign Up'}
                     </button>
 
-                    {isSignInForm && (
-                        <div className="flex justify-between items-center mt-4 text-sm text-gray-400">
-                            <label className="flex items-center gap-2 cursor-pointer">
-                                <input
-                                    type="checkbox"
-                                    className="w-4 h-4 accent-[#E50914]"
-                                />
-                                Remember me
-                            </label>
-                            <a href="#" className="hover:underline">
-                                Need help?
-                            </a>
-                        </div>
-                    )}
-
-                    <div className="mt-12">
-                        <p className="text-gray-400">
+                    {/* Sign Up / Sign In Toggle */}
+                    <div style={{ marginTop: '16px' }}>
+                        <span style={{ color: '#737373' }}>
                             {isSignInForm
                                 ? 'New to Netflix? '
                                 : 'Already have an account? '}
-                            <span
-                                className="text-white font-medium cursor-pointer hover:underline"
-                                onClick={toggleSignInForm}
-                            >
-                                {isSignInForm ? 'Sign up now' : 'Sign in now'}
-                            </span>
-                        </p>
+                        </span>
+                        <span
+                            onClick={toggleSignInForm}
+                            style={{
+                                color: 'white',
+                                cursor: 'pointer',
+                                fontWeight: '500',
+                            }}
+                        >
+                            {isSignInForm ? 'Sign up now.' : 'Sign in now.'}
+                        </span>
                     </div>
-
-                    <p className="mt-4 text-xs text-gray-500">
-                        This page is protected by Google reCAPTCHA to ensure
-                        you're not a bot.{' '}
-                        <a href="#" className="text-blue-500 hover:underline">
-                            Learn more.
-                        </a>
-                    </p>
                 </form>
             </div>
         </div>

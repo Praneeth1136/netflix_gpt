@@ -10,7 +10,8 @@ const MovieCard = ({ posterPath, title }) => {
         <div
             style={{
                 position: 'relative',
-                width: '180px',
+                width: '200px',
+                minWidth: '200px',
                 flexShrink: 0,
                 cursor: 'pointer',
             }}

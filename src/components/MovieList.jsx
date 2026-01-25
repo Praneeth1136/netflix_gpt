@@ -27,18 +27,18 @@ const MovieList = ({ title, movies }) => {
     return (
         <div
             style={{
-                marginBottom: '48px',
-                paddingLeft: '48px',
-                paddingRight: '48px',
+                marginBottom: '24px',
+                paddingLeft: '0',
+                paddingRight: '0',
             }}
         >
             {/* Row Title */}
             <h2
                 style={{
-                    fontSize: '20px',
+                    fontSize: '18px',
                     fontWeight: '600',
                     color: 'white',
-                    marginBottom: '16px',
+                    marginBottom: '12px',
                 }}
             >
                 {title}
@@ -48,8 +48,8 @@ const MovieList = ({ title, movies }) => {
             <div
                 style={{
                     position: 'relative',
-                    marginLeft: '-48px',
-                    marginRight: '-48px',
+                    marginLeft: '0',
+                    marginRight: '0',
                 }}
             >
                 {/* Left Arrow */}
@@ -60,7 +60,7 @@ const MovieList = ({ title, movies }) => {
                             position: 'absolute',
                             left: 0,
                             top: 0,
-                            bottom: '60px',
+                            bottom: '20px',
                             zIndex: 40,
                             width: '48px',
                             backgroundColor: 'rgba(0,0,0,0.6)',
@@ -84,12 +84,12 @@ const MovieList = ({ title, movies }) => {
                     className="custom-scrollbar"
                     style={{
                         display: 'flex',
-                        gap: '8px',
+                        gap: '10px',
                         overflowX: 'auto',
-                        paddingBottom: '60px',
+                        paddingBottom: '20px',
                         paddingTop: '8px',
-                        paddingLeft: '48px',
-                        paddingRight: '48px',
+                        paddingLeft: '0',
+                        paddingRight: '0',
                     }}
                 >
                     {movies?.map((movie) => (

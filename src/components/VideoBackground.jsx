@@ -33,7 +33,7 @@ const VideoBackground = ({ movieId }) => {
             {/* Video Container - Scaled up to cover and remove black bars */}
             <div className="absolute inset-0 w-full h-full">
                 <iframe
-                    className="absolute top-1/2 left-1/2 min-w-[100vw] min-h-[100vh] w-auto h-auto -translate-x-1/2 -translate-y-1/2 scale-[1.5]"
+                    className="absolute top-1/2 left-1/2 min-w-[100vw] min-h-[100vh] w-auto h-auto -translate-x-1/2 -translate-y-1/2 scale-[1.35]"
                     src={
                         'https://www.youtube.com/embed/' +
                         trailerVideo?.key +
@@ -47,14 +47,14 @@ const VideoBackground = ({ movieId }) => {
             </div>
 
             {/* Gradient Overlays for Netflix effect */}
-            {/* Left side gradient - for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
+            {/* Left Vignette - Crucial for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black via-black/30 to-transparent w-[40%]"></div>
 
-            {/* Bottom gradient - transition to movie rows */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-[#141414]/40 to-transparent"></div>
+            {/* Bottom Gradient - Seamless transition */}
+            <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#141414] via-[#141414]/60 to-transparent"></div>
 
-            {/* Top gradient - subtle darkening */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent"></div>
+            {/* Top Gradient - Subtle */}
+            <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black/60 to-transparent"></div>
         </div>
     )
 }
