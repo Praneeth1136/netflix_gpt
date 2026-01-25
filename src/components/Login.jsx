@@ -137,7 +137,7 @@ const Login = () => {
                     <input
                         ref={email}
                         type="text"
-                        placeholder="Email or mobile number"
+                        placeholder="Email address"
                         style={{
                             width: '100%',
                             padding: '16px 20px',
